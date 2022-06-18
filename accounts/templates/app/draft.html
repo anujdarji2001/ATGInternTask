@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block main-content %}
+<div class="page-wrapper">
+    <div class="container">
+        <h3 class="text-success mb-3">{{msg}}</h3>
+        <div class="row">
+            {% if blogs %}
+            
+            {% for blog in blogs  %}
+          <div class="col-md-4">
+        <div class="blog-card blog-card-blog">
+          <div class="blog-card-image">
+              <a href="#"> <img class="img" src="{{blog.blogpic.url}}"> </a>
+              <div class="ripple-cont"></div>
+          </div>
+          <div class="blog-table">
+              <h6 class="blog-category blog-text-success"><i class="far fa-newspaper"></i> {{blog.categoryofblog}}</h6>
+              <h4 class="blog-card-caption">
+                  {{blog.titleofblog}}
+              </h4>
+              <p class="blog-card-description">{{blog.summaryofblog}}</p>
+              <div class="ftr">
+                  <div class="author">
+                      <a href="#"> <img src="{{blog.user.propic.url}}" alt="..." class="avatar img-raised"> <span>{{blog.user.first_name}} {{blog.user.last_name}} | {{blog.user.user_type | capfirst}}</span> </a>
+                      <a href="{% url 'editdraft' blog.id %}" class="pen"><i class="fas fa-pen"></i></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+      {% endfor %}
+
+      {% else %}
+      <div class="mt-5">
+        <h1> No Blogs Available </h1>
+      </div>
+      {% endif %}
+          
+</div>
+    </div>
+</div>
+{% endblock main-content %}
+
+
+
+
+
+
+
+    

@@ -13,11 +13,17 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
     <title>Adminmart Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.0/font/bootstrap-icons.min.css">
+
+
     <link href="{% static 'assets/extra-libs/c3/c3.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/libs/chartist/dist/chartist.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{% static 'dist/css/style.min.css' %}" rel="stylesheet">
+    <link href="{% static 'app/css/style.css' %}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -271,37 +277,42 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="index.html"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{% url 'home' %}"
                                 aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
                         <li class="list-divider"></li>
                         
                         <li class="nav-small-cap"><span class="hide-menu">Components</span></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
-                                    class="hide-menu">Forms </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                                <li class="sidebar-item"><a href="form-inputs.html" class="sidebar-link"><span
-                                            class="hide-menu"> Form Inputs
-                                        </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><span
-                                            class="hide-menu"> Form Grids
-                                        </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="form-checkbox-radio.html" class="sidebar-link"><span
-                                            class="hide-menu"> Checkboxes &
-                                            Radios
-                                        </span></a>
-                                </li>
-                            </ul>
+                        
+                        {% if user_type == 'doctor' %}
+
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{% url 'myblog' %}"
+                            aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
+                                class="hide-menu">My Blogs
+                            </span></a>
                         </li>
                         
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="ui-cards.html"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{% url 'createblog' %}"
                                 aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
-                                    class="hide-menu">Cards
+                                    class="hide-menu">Create Blog
                                 </span></a>
                         </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{% url 'draft' %}"
+                            aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
+                                class="hide-menu">Draft
+                            </span></a>
+                        </li>
+                        
+                        {% endif %}
+
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{% url 'blogs' %}"
+                            aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
+                                class="hide-menu"> Blogs
+                            </span></a>
+                        </li>
+
+
                         <li class="list-divider"></li>
                         <li class="nav-small-cap"><span class="hide-menu">Authentication</span></li>
 
@@ -355,6 +366,9 @@
 <script src="{% static 'dist/js/sidebarmenu.js' %}"></script>
 <!--Custom JavaScript -->
 <script src="{% static 'dist/js/custom.min.js' %}"></script>
+
+<script src="{% static 'app/js/main.js' %}"></script>
+
 <!--This page JavaScript -->
 <script src="{% static 'assets/extra-libs/c3/d3.min.js' %}"></script>
 <script src="{% static 'assets/extra-libs/c3/c3.min.js' %}"></script>

@@ -33,3 +33,24 @@ class CustomUser(AbstractUser,PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     REQUIRED_FIELDS = []
+
+
+  
+category_of_blog=[
+    ('Mental Health','Mental Health'),
+    ('Heart Disease','Heart Disease'),
+    ('Covid19','Covid19'),
+    ('Immunization','Immunization'),
+]
+
+class BlogForm(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    titleofblog = models.CharField(max_length=200)
+    categoryofblog = models.CharField(choices=category_of_blog, max_length=200)
+    summaryofblog = models.TextField()
+    contentofblog = models.TextField()
+    draft = models.BooleanField(default=False)
+    blogpic = models.ImageField(upload_to='blogpic')
+
+    def str(self):
+        return str(self.id)

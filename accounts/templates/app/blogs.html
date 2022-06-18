@@ -1,0 +1,60 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block main-content %}
+<div class="page-wrapper">
+    
+    <div class="container">
+        <div class="row my-5">
+            <h3 class="text-success mb-3">{{msg}}</h3>
+			<div class="portfolio-filter padd-15">
+                <button type="button" class="active" data-filter="all">All Blogs</button>
+                <button type="button" data-filter="Mental Health">Mental Health</button>
+                <button type="button" data-filter="Heart Disease">Heart Disease</button>
+                <button type="button" data-filter="Covid19">Covid19</button>
+                <button type="button" data-filter="Immunization">Immunization</button>
+			</div>
+		</div>
+
+        <div class="row">
+            {% if blogs %}
+            
+            {% for blog in blogs  %}
+          <div class="col-md-4 blogmain" data-category="{{blog.categoryofblog}}">
+        <div class="blog-card blog-card-blog">
+          <div class="blog-card-image">
+              <a href="#"> <img class="img" src="{{blog.blogpic.url}}"> </a>
+              <div class="ripple-cont"></div>
+          </div>
+          <div class="blog-table">
+              <h6 class="blog-category blog-text-success"><i class="far fa-newspaper"></i> {{blog.categoryofblog}}</h6>
+              <h4 class="blog-card-caption">
+                  {{blog.titleofblog}}
+              </h4>
+              <p class="blog-card-description">{{blog.summaryofblog}}</p>
+              <div class="ftr">
+                  <div class="author">
+                      <a href="#"> <img src="{{blog.user.propic.url}}" alt="..." class="avatar img-raised"> <span>{{blog.user.first_name}} {{blog.user.last_name}} | {{blog.user.user_type | capfirst}}</span> </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="mt-5">
+        <h1> No Blogs Available </h1>
+      </div>
+      {% endif %}
+          
+</div>
+    </div>
+</div>
+{% endblock main-content %}
+
+
+
+
+
+
+
+    

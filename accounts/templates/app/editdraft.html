@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block main-content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row pb-5">
+            <div class="col-7 align-self-center">
+                <h1>Create Blog</h1>
+                <style>td{padding-right:30px; padding-top: 30px;}</style>
+
+            <form method ="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            <table>
+                
+                <tr>
+                    <td><label for="incidentdepartment">Title of the Blog:</label></td>
+                    <td><input class="form-control" type="text" name="titleofblog" value={{blog.titleofblog}} ></td>
+                </tr>
+
+                <tr>
+                    <td><label for="summaryofblog">Enter the Summary of Blog: </label></td>
+                    <td><textarea class="form-control" id="summaryofblog" name="summaryofblog" rows="4" cols="50" >{{blog.summaryofblog}}</textarea></td>
+                </tr>
+
+                <tr>
+                    <td><label for="contentofblog">Enter the Content of Blog: </label></td>
+                    <td><textarea class="form-control" id="contentofblog" name="contentofblog" rows="4" cols="50" >{{blog.summaryofblog}}</textarea></td>
+                </tr>
+
+                <tr>
+                    <td><label for="">Select Category of Blog: </label></td>
+                    <td> 
+                        <select class="form-control" name="categoryofblog" value={{blog.categoryofblog}}>  
+                            {% for i in blogcat %}
+                                <option value = "{{i}}" {% if blog.categoryofblog == i %} selected="selected" {% endif %}>{{i}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="subincidenttypes">Draft or Not? :</label></td>
+                    <td><input type="checkbox" name="draft" value="draft" checked></td>
+                </tr>
+
+                <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+            </table>
+    
+            </form>
+  </div></div></div></div>
+{% endblock main-content %}
+
+
+
+
+
+
+
+    
